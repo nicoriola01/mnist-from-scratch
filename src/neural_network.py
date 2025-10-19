@@ -20,9 +20,9 @@ def init_parameters():
 #standard forward propagation
 def forward_propagation(data_train, W1, b1, W2, b2):
     Z1 = W1.dot(data_train) + b1
-    A1 = ReLu(Z1)
+    A1 = relu(Z1)
     Z2 = W2.dot(A1) + b2
-    A2 = softMax(Z2)
+    A2 = softmax(Z2)
 
     return Z1, A1, Z2, A2
 
@@ -33,7 +33,7 @@ def backward_propagation(data_train, labels_train, A1, A2, Z1, W2):
     dW2 = 1 / data_train.shape[1] * dZ2.dot(A1.T)
     db2 = 1 / data_train.shape[1] * np.sum(dZ2, axis=1, keepdims=True)
 
-    dZ1 = W2.T.dot(dZ2) * ReLu_derivative(Z1)
+    dZ1 = W2.T.dot(dZ2) * relu_derivative(Z1)
     dW1 = 1 / data_train.shape[1] * dZ1.dot(data_train.T)
     db1 = 1 / data_train.shape[1] * np.sum(dZ1, axis=1, keepdims=True)
 
@@ -52,19 +52,43 @@ def update_parameters(W1, b1, W2, b2, dW1, db1, dW2, db2):
 
 #turning labels into one hot vector
 def one_hot(labels):
-    one_hot_labels = np.zeros((labels.size, labels.max() + 1))
+    one_hot_labels = np.zeros((labels.size, 10))
     one_hot_labels[np.arange(labels.size), labels] = 1
 
     return one_hot_labels.T
 
 #activation function
-def ReLu(Z):
+def relu(Z):
     return np.maximum(Z, 0)
 
 #derivative of activation function
-def ReLu_derivative(Z):
+def relu_derivative(Z):
     return Z > 0
 
 #turning values into probabilities
-def softMax(Z):
+def softmax(Z):
     return np.exp(Z) / np.sum(np.exp(Z), axis=0, keepdims=True)
+
+#training function, returns updated parameters after every epoch
+def train(W1, b1, W2, b2, data_train, labels_train):
+    Z1, A1, Z2, A2 = forward_propagation(data_train, W1, b1, W2, b2)
+    db1, db2, dW1, dW2 = backward_propagation(data_train, labels_train, A1, A2, Z1, W2)
+    W1, b1, W2, b2 = update_parameters(W1, b1, W2, b2, dW1, db1, dW2, db2)
+
+    return W1, b1, W2, b2
+
+#calculating loss
+def calculate_loss(A2, labels):
+    m = labels.size
+    one_hot_labels = one_hot(labels)
+
+    epsilon = 1e-10
+    A2_clipped = np.clip(A2, epsilon, 1 - epsilon)
+    loss = - (1 / m) * np.sum(one_hot_labels * np.log(A2_clipped))
+
+    return loss
+
+#calculating accuracy
+def calculate_accuracy(predictions, labels):
+    predictions = np.argmax(predictions, 0)
+    return np.sum(predictions == labels) / labels.size
