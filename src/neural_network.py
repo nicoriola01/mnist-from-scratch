@@ -52,7 +52,7 @@ def update_parameters(W1, b1, W2, b2, dW1, db1, dW2, db2):
 
 #turning labels into one hot vector
 def one_hot(labels):
-    one_hot_labels = np.zeros(labels.size, labels.max + 1)
+    one_hot_labels = np.zeros((labels.size, labels.max() + 1))
     one_hot_labels[np.arange(labels.size), labels] = 1
 
     return one_hot_labels.T

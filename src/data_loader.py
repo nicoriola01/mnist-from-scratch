@@ -32,4 +32,4 @@ data_test = test[1:]
 data_test = data_test / 255
 data_train = data_train / 255
 
-print("Data loaded successfully from csv files")
+print("Data loaded successfully from .csv files")
