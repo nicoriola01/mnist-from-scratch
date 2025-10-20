@@ -44,7 +44,7 @@ git clone https://github.com/nicoriola01/mnist-from-scratch.git
 ### 3. Install dependencies
 The project requires the following Python libraries. You can install them using pip:
 ```
-pip install numpy pandas Pillow tkinter
+pip install numpy pandas Pillow tkinter matplotlib
 ```
 ### 4. Download the Dataset
 This project uses the MNIST dataset in CSV format.
