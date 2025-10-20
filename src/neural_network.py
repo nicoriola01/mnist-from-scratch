@@ -92,3 +92,18 @@ def calculate_loss(A2, labels):
 def calculate_accuracy(predictions, labels):
     predictions = np.argmax(predictions, 0)
     return np.sum(predictions == labels) / labels.size
+
+#getting errors images and labels
+def get_errors(data_test, labels_test):
+    data = np.load("../results/weights.npz")
+    W1, b1, W2, b2 = data["W1"], data["b1"], data["W2"], data["b2"]
+
+    _,_,_,predictions = forward_propagation(data_test, W1, b1, W2, b2)
+    predictions = np.argmax(predictions, 0)
+    errors = []
+
+    for i in range(predictions.shape[0]):
+        if predictions[i] != labels_test[i]:
+            errors.append({'index': i, 'predicted': predictions[i], 'actual': labels_test[i]})
+
+    return errors
