@@ -39,7 +39,7 @@ you can draw a digit and have the model predict what it is.
 - Python 3.x
 ### 2. Clone the repository
 ```
-git clone [https://github.com/your-username/handwritten-digit-recognizer.git](https://github.com/your-username/handwritten-digit-recognizer.git)
+git clone https://github.com/nicoriola01/mnist-from-scratch.git
 ```
 ### 3. Install dependencies
 The project requires the following Python libraries. You can install them using pip:
