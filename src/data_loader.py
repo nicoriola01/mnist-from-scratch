@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 
 #csv loading
-training_set = pd.read_csv('mnist_test.csv') # put the absolute path of mnist_train.csv
-test_set = pd.read_csv('../datasets/mnist_test.csv') # put the absolute path of mnist_test.csv
+training_set = pd.read_csv('mnist_train.csv') # put the absolute path of mnist_train.csv
+test_set = pd.read_csv('mnist_test.csv') # put the absolute path of mnist_test.csv
 
 #transforming from pandas to numpy arrays
 training_set = np.array(training_set)
