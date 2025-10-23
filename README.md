@@ -1,3 +1,6 @@
+![image](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/MNIST_dataset_example.png/640px-MNIST_dataset_example.png)
+
+
 # MNIST Digit Recognizer
 This project is a digit recognizer built with Python. It uses a custom-built neural network from scratch using only NumPy and Pandas, and it features a graphical user interface (GUI) made with Tkinter where 
 you can draw a digit and have the model predict what it is.
@@ -73,3 +76,6 @@ The core of the project is a simple feedforward neural network with a single hid
 - **Output Layer**: 10 neurons (for digits 0-9) with the Softmax activation function to produce probabilities.
 
 The training process uses gradient descent and backpropagation to adjust the model's weights and biases to minimize the loss on the training data.
+
+
+![training](results/training.png)
