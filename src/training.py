@@ -45,5 +45,5 @@ def gradient_descent(data, labels):
 W1_final, b1_final, W2_final, b2_final = gradient_descent(data_train, labels_train)
 print("Training completed successfully")
 
-np.savez("../results/weights.npz", W1=W1_final, b1=b1_final, W2=W2_final, b2=b2_final)
+np.savez("results/weights.npz", W1=W1_final, b1=b1_final, W2=W2_final, b2=b2_final) # put the right absolute path for results/weights.npz
 print("Weights saved successfully")
