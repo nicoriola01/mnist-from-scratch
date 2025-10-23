@@ -66,7 +66,7 @@ Run the training script from the root directory:
 ### Step 2: Launch the GUI Recognizer
 After the ```weights.npz``` file has been created, you can run the GUI application.
 
-```python digit_recognizer_functional.py```
+```python interactive_digit_recognizer.py```
 
 The application window will open. You can now draw a digit on the black canvas and click "Predict" to see the result!
 ## How it works
